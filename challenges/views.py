@@ -1,19 +1,31 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
+
+
+challenges = {
+        "january": "Eat no meat for the entire month.",
+        "february": "Walk for at least 20 minutes every day.",
+        "march": "Learn Django for at least 20 minutes every day.",
+        "april": "Exercise for at least 30 minutes every day.",
+        "may": "Read at least one book.",
+        "june": "Learn a new programming language.",
+        "july": "Write a blog post every week.",
+        "august": "Take a photo every day.",
+        "september": "Meditate for at least 10 minutes every day.",
+        "october": "Learn a new skill.",
+        "november": "Write a gratitude journal every day.",
+        "december": "Reflect on the year and set goals for the next year."
+}
 
 # Create your views here.
-def index(request, month):
-    challenges = {
-        "january": "These are the challenges for January.",
-        "february": "These are the challenges for February.",
-        "march": "These are the challenges for March.",
-        "april": "These are the challenges for April.",
-        "may": "These are the challenges for May.",
-        "june": "These are the challenges for June.",
-        "july": "These are the challenges for July.",
-        "august": "These are the challenges for August.",
-        "september": "These are the challenges for September.",
-        "october": "These are the challenges for October.",
-        "november": "These are the challenges for November.",
-        "december": "These are the challenges for December.",
-    }
-    return HttpResponse(challenges.get(month, "Invalid month."))
+def challenges_int(request, month):
+    months = list(challenges.keys())
+    if month > len(months):
+        return HttpResponse("Invalid month.")
+    else:
+        month_name = months[month - 1]
+        redirect_path = reverse("monthly-challenge", args=[month_name])
+        return HttpResponseRedirect(redirect_path)
+
+def challenges_string(request, month):
+    return HttpResponse(f"STRING: {challenges.get(month, 'Invalid month.')}")
