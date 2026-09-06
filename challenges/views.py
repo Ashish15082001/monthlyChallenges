@@ -20,7 +20,7 @@ challenges = {
 # Create your views here.
 def challenges_int(request, month):
     months = list(challenges.keys())
-    if month > len(months):
+    if month > len(months) or month < 1:
         return HttpResponse("Invalid month.")
     else:
         month_name = months[month - 1]
