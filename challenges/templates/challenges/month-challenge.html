@@ -1,0 +1,14 @@
+{% extends "main-layout.html" %}
+
+{% block "page_title" %}{{ month }}{% endblock %}
+
+{% block "page_content" %}
+<main>
+  <p class="eyebrow">Challenge of the month</p>
+  <h1>{{ month }}</h1>
+
+  <blockquote class="challenge">{{ challenge }}</blockquote>
+
+  <a class="back" href="/challenges/">&larr; All months</a>
+</main>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "main-layout.html" %}
+
+{% block "page_title" %}Monthly Challenges{% endblock %}
+
+{% block "page_content" %}
+<main>
+  <p class="eyebrow">A Django learning project</p>
+  <h1>Monthly Challenges</h1>
+
+  <p class="intro">
+    Twelve months, twelve challenges. Every month of the year has one small habit
+    attached to it &mdash; pick a month and see what you signed up for.
+  </p>
+
+  <h2>What this project shows</h2>
+  <ul class="features">
+    <li>
+      <strong>One dynamic route for all twelve months.</strong>
+      A single view handles every month instead of twelve near-identical views.
+    </li>
+    <li>
+      <strong>Two ways to reach a month.</strong>
+      <code>/challenges/march/</code> renders the page; <code>/challenges/3/</code>
+      redirects to it, so numbers and names both work.
+    </li>
+    <li>
+      <strong>Template inheritance.</strong>
+      Every page extends <code>main-layout.html</code> and fills in the title and
+      content blocks, so the shell and styling live in exactly one place.
+    </li>
+    <li>
+      <strong>A reusable partial.</strong>
+      The navigation bar above is <code>main-nav.html</code>, included by the layout
+      rather than copied into each page.
+    </li>
+    <li>
+      <strong>Named URLs.</strong>
+      Links are built with <code>{% verbatim %}{% url "monthly-challenge" month %}{% endverbatim %}</code>,
+      so the URL pattern can change without hunting down hardcoded paths.
+    </li>
+  </ul>
+
+  <a class="cta" href="/challenges/">Browse all months &rarr;</a>
+</main>
+{% endblock %}

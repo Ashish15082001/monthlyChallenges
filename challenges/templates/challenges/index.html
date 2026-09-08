@@ -1,0 +1,17 @@
+{% extends "main-layout.html" %}
+
+{% block "page_title" %}Monthly Challenges{% endblock %}
+
+{% block "page_content" %} <main>
+        <h1>Monthly Challenges</h1>
+        <p class="intro">One challenge for every month of the year. Pick a month to see it.</p>
+
+        <ul class="months">
+            {% for month in months %}
+            <li><a href="{% url "monthly-challenge" month %}">{{ month}}</a></li>
+            {% endfor %}
+        </ul>
+    </main>
+{% endblock %}
+
+
